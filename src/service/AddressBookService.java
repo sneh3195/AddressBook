@@ -1,6 +1,8 @@
 package service;
 import entity.AddressBook;
 import entity.ContactPerson;
+
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -93,5 +95,17 @@ public class AddressBookService {
 		obj.setContacts(firstName, lastName, address, city, state, zip, phoneNumber, email);
 		System.out.println(" the new contact is : ");
 		System.out.println(obj);
+	}
+  public void deleteContact() {
+		
+		ContactPerson obj = findContact(firstName);
+		
+		if(obj == null) {
+			System.out.println(" Couldn't find contact");
+			return;
+		}
+		
+		ArrayList<ContactPerson> contacts = AddressBook.getContacts();
+		contacts.remove(obj);
 	}
 }

@@ -13,7 +13,7 @@ public class AddressBookMain {
 		AddressBookService ABS = new AddressBookService();
 		
 		while (true) {
-			System.out.println(" 1. Add\n 2. Print Contacts\n 3. Exit ");
+			System.out.println(" 1. Add\n 2. Print Contacts\n 3. Edit Contact\n 4. Delete Contact\n 5. Exit ");
 			System.out.println(" Please enter your choice: ");
 			
 			ch = input.nextInt();
@@ -29,7 +29,11 @@ public class AddressBookMain {
 			case 3:
 				ABS.editContact();
 				break;
+				
 			case 4:
+				ABS.deleteContact();
+				break;
+			case 5:
 				System.out.println("BYE!!!!Have a Nice Day ");
 				input.close();
 				return;
