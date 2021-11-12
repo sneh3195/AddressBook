@@ -1,9 +1,18 @@
 package com.AddressBook;
+import java.util.ArrayList;
+
+import com.address.service.ContactPerson;
 
 public class AddressBook {
 
-	public static void main(String[] args) {
-       System.out.println("WELCOME TO ADDRESS BOOK");
+	public static ArrayList<ContactPerson> contacts;
+
+	public static ArrayList<ContactPerson> getContacts() {
+		return contacts;
+	}
+
+	public static void setContacts(ArrayList<ContactPerson> contacts) {
+		AddressBook.contacts = contacts;
 	}
 
 }
