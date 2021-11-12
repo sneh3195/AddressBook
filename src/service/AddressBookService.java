@@ -1,40 +1,54 @@
 package service;
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import entity.AddressBook;
 import entity.ContactPerson;
+import java.util.Iterator;
+import java.util.Scanner;
 
 public class AddressBookService {
-public void addContact() {
+	String firstName;
+	String lastName;
+	String address;
+	String city;
+	String state;
+	int zip;
+	int phoneNumber;
+	String email;
+	
+	Scanner scan = new Scanner(System.in);
+	
+	public void getContact() {
 		
-		ArrayList<ContactPerson> contacts = AddressBook.getContacts();
+		System.out.print(" Please enter the first name: ");
+		firstName = scan.next();
 		
-		Scanner input = new Scanner(System.in);
-		System.out.print(" ENTER FIRST NAME: ");
-		String firstName = input.next();
+		System.out.print(" Please enter the last name: ");
+		lastName = scan.next();
 		
-		System.out.print(" ENTER LAST NAME:");
-		String lastName = input.next();
+		System.out.print(" Please enter the address: ");
+		address = scan.next();
 		
-		System.out.print(" ENTER ADDRESS: ");
-		String address = input.next();
+		System.out.print(" Please enter the city: ");
+		city = scan.next();
 		
-		System.out.print(" ENTER CITY: ");
-		String city = input.next();
+		System.out.print(" Please enter the state: ");
+		state = scan.next();
 		
-		System.out.print(" ENTER YOUR STATE: ");
-		String state = input.next();
+		System.out.print(" Please enter the zip: ");
+		zip = scan.nextInt();
 		
-		System.out.print(" ENTER ZIP-CODE: ");
-		int zip =input.nextInt();
-		
-		System.out.print("ENTER PHONE NO: ");
-		int phoneNumber = input.nextInt();
+		System.out.print(" Please enter the phone number: ");
+		phoneNumber = scan.nextInt();
 		
 		System.out.print(" Please enter the email: ");
-		String email = input.next();
+		email = scan.next();
 		
+	}
+
+	public void addContact() {
+		
+		ArrayList<ContactPerson> contacts = AddressBook.getContacts();		
+		
+		getContact();
 		ContactPerson newContact = new ContactPerson(firstName, lastName, address, city, state, zip, phoneNumber, email);
 		contacts.add(newContact);
 		AddressBook.setContacts(contacts);
@@ -49,5 +63,35 @@ public void addContact() {
 		for (ContactPerson contactPerson : contacts) {
 			System.out.println(contactPerson);
 		}
+	}
+	
+	public ContactPerson findContact(String name) {
+		
+		ArrayList<ContactPerson> contacts = AddressBook.getContacts();
+		
+		for (ContactPerson contactPerson : contacts) {
+			if ( contactPerson.getFirstName().equals(name) ) {
+				return contactPerson;
+			}
+		}
+		
+		return null;
+	}
+	
+	public void editContact() {
+		
+		System.out.println(" Please enter the name of the contact you want to edit: ");
+		String name = scan.next();
+		ContactPerson obj = findContact(name);
+		
+		if(obj == null) {
+			System.out.println(" Couldn't find contact");
+			return;
+		}
+		
+		getContact();
+		obj.setContacts(firstName, lastName, address, city, state, zip, phoneNumber, email);
+		System.out.println(" the new contact is : ");
+		System.out.println(obj);
 	}
 }

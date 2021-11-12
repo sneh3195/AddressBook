@@ -25,7 +25,11 @@ public class AddressBookMain {
 			case 2: 
 				ABS.printContacts();
 				break;
+				
 			case 3:
+				ABS.editContact();
+				break;
+			case 4:
 				System.out.println("BYE!!!!Have a Nice Day ");
 				input.close();
 				return;
@@ -34,3 +38,4 @@ public class AddressBookMain {
 	}
 
 }
+
